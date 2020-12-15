@@ -1,152 +1,60 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Weather Dashboard</title>
-    <!--Bulma instead of Bootstrap-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-
-    <!--weather icons from Erik Flowers-->
-    <link rel="stylesheet" href="assets\images\weather-icons-master\css\weather-icons.css">
-    <!--fonts from Google-->
-    <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Raleway&display=swap" rel="stylesheet">
-    <!--link to style-->
-    <link rel="stylesheet" href="assets/style.css">
-
 </head>
 
 <body>
-    <section class="hero is-small">
-        <div class="hero-body">
-            <div class="container">
-                <h1 class="title" id="weatherDashboardTitle">
-                    Weather Dashboard
-                </h1>
-            </div>
-        </div>
-    </section>
+    <!-- Jumbotron to display the City name upon search -->
+    <div id="header" class="jumbotron jumbotron-fluid text-container">
+        <h1 id="header-text" class="display-2"></h1>
+    </div>
 
-    <div class="container">
-        <div class="columns is-ancestor">
-            <div class="column is-one-third">
-                <article class="tile is-child notification" id="searchBoxBg">
-                    <!--Search bar and frequently searched cities-->
-                    <p class="title" id="searchTitle">Search</p>
-                    <div id="searchBox">
-                        <!--Input field for City-->
-                        <div class="field is-grouped">
-                            <input class="input" type="text" placeholder="City" id="cityInput">
-                            <button class="button" id="searchBtn">
-                                <span class="icon">
-                                    <i class="fas fa-search-location"></i>
-                                </span>
-                            </button>
-                        </div>
-                        <br>
-                        <div id="frequentlySearched">
-                            <button class="button is-info" id="austin">Austin</button>
-                            <button class="button is-info" id="chicago">Chicago</button>
-                            <button class="button is-info" id="newYork">New York</button>
-                            <button class="button is-info" id="orlando">Orlando</button>
-                            <button class="button is-info" id="sanFrancisco">San Francisco</button>
-                            <button class="button is-info" id="seattle">Seattle</button>
-                            <button class="button is-info" id="denver">Denver</button>
-                            <button class="button is-info" id="atlanta">Atlanta</button>
-                        </div>
-                </article>
-            </div>
-            <div class="column is-two-thirds">
-                <div class="tile is-parent is-vertical">
-                    <article class="tile is-child notification" id="statBox">
-                        <h4 id="cityStats"></h4>
-                        <p id="dateBox"></p>
-                        <p id="temperatureResponse">Temperature:</p>
-                        <p id="humidityResponse">Humidity:</p>
-                        <p id="windSpeedResponse">Wind Speed:</p>
-                        <p id="uvIndexResponse">UV Index: <a id="wikiUVLink"></a></p>
-                    </article>
+    <!-- Main container for webpage content -->
+    <div id="content" class="container">
+        <div class="row">
 
-                    <article class="tile is-child notification" id="weatherBox">
-                        <!--Dynamically append the city name here.-->
-                        <p class="title" id="cityForecast"></p>
-                        <div class="columns is-multiline">
-                            <!-- Content -->
-                            <div class="column" id="currentCityWeather">
-                                <figure class="image">
-                                    <i id="currentIcon"></i></figure>
-                                <h6 id="currentDate"></h6>
-                                <h1 class="weatherTemp has-text-centered is-size-2" id="currentTemp">
-                                    <!--Add temperature here!-->
-                                </h1>
-                                <h3 class="weatherCondition has-text-centered is-size-5" id="currentCondition">
-                                    <!--Replace text with string that tells you conditions, like, windy, clear, sunny, stormy-->
-                                    Current weather
-                                </h3>
-                            </div>
-                            <div class="column" id="day1Forecast">
-                                <figure class="image">
-                                    <i id="day1Icon"></i></figure>
-                                <h6 id="day1Date"></h6>
-                                <h1 class="weatherTemp has-text-centered is-size-2" id="day1Temp">
-                                </h1>
-                                <h3 class="weatherCondition has-text-centered is-size-5" id="day1Condition">
-                                    Day 1 weather
-                                </h3>
-                            </div>
-                            <div class="column" id="day2Forecast">
-                                <figure class="image">
-                                    <i id="day2Icon"></i></figure>
-                                <h6 id="day2Date"></h6>
-                                <h1 class="weatherTemp has-text-centered is-size-2" id="day2Temp">
-                                </h1>
-                                <h3 class="weatherCondition has-text-centered is-size-5" id="day2Condition">
-                                    Day 2 weather
-                                </h3>
-                            </div>
-                            <div class="column" id="day3Forecast">
-                                <figure class="image">
-                                    <i id="day3Icon"></i></figure>
-                                <h6 id="day3Date"></h6>
-                                <h1 class="weatherTemp has-text-centered is-size-2" id="day3Temp">
-                                </h1>
-                                <h3 class="weatherCondition has-text-centered is-size-5" id="day3Condition">
-                                    Day 3 weather
-                                </h3>
-                            </div>
-                            <div class="column" id="day4Forecast">
-                                <figure class="image">
-                                    <i id="day4Icon"></i></figure>
-                                <h6 id="day4Date"></h6>
-                                <h1 class="weatherTemp has-text-centered is-size-2" id="day4Temp">
-                                </h1>
-                                <h3 class="weatherCondition has-text-centered is-size-5" id="day4Condition">
-                                    Day 4 weather
-                                </h3>
-                            </div>
-                            <div class="column" id="day5Forecast">
-                                <figure class="image">
-                                    <i id="day5Icon"></i></figure>
-                                <h6 id="day5Date"></h6>
-                                <h1 class="weatherTemp has-text-centered is-size-2" id="day5Temp">
-                                </h1>
-                                <h3 class="weatherCondition has-text-centered is-size-5" id="day5Condition">
-                                    Day 5 weather
-                                </h3>
-                            </div>
-                        </div>
-                    </article>
-                </div>
+            <!-- Left side content with city search box and appended cities -->
+            <div id="content-left" class="col-md-3">
+                <form>
+                    <label for="search-city">Search for a City:</label>
+                    <div class="form-row">
+                        <input id="search-city" class="form-control" name="city" value="Austin"></input>
+                        <!-- fontawesome magnifying glass -->
+                        <button id="search-button" class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+                    </div>
+                </form>
+                <div id="search-error"></div>
+                <!-- list of prior searched cities -->
+                <ul id="city-results" class="list-group mt-4"></ul>
+                <!-- clear storage button -->
+                <a id="clear-storage" href="#"></a>    
+            </div>
+
+            <!-- Right side content showing current weather and five day forecast displays on search -->
+            <div id="content-right" class="col-md-9 pt-4">
+                <!-- Current weather displayed on top -->
+                <div id="current-weather" class="border rounded"></div>
+                <!-- Five day forecast below the current weather -->
+                <div id="five-day-forecast" class="mt-5"></div>
             </div>
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/scripts/moment.js"></script>
-    <script type="text/javascript" src="assets/scripts/script.js" defer></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <!-- Custom Script -->
+    <script src="./assets/js/homepage.js"></script>
+    
 </body>
-
 </html>
