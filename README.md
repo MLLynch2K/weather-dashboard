@@ -1,6 +1,6 @@
 Weather Dashboard
 
-URL of the functional, deployed application: https://mllynch2k.github.io/weather-dashboard/
+URL of the functional deployed application: https://mllynch2k.github.io/weather-dashboard/
 
 URL of the GitHub repository: https://github.com/MLLynch2K/weather-dashboard
 
